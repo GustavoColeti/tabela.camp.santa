@@ -1,0 +1,92 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+background:#eceff1;
+}
+
+header{
+background:#0a8f3c;
+color:white;
+padding:25px;
+text-align:center;
+box-shadow:0 5px 15px rgba(0,0,0,.2);
+}
+
+.container{
+max-width:1100px;
+margin:30px auto;
+padding:15px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 10px 20px rgba(0,0,0,.1);
+}
+
+thead{
+background:#009c3b;
+color:white;
+}
+
+th,td{
+padding:14px;
+text-align:center;
+}
+
+tbody tr:nth-child(even){
+background:#f5f5f5;
+}
+
+tbody tr:hover{
+background:#d7f5df;
+}
+
+.time{
+display:flex;
+align-items:center;
+gap:12px;
+font-weight:bold;
+}
+
+.escudo{
+width:28px;
+height:28px;
+border-radius:50%;
+}
+
+.liberta{
+border-left:6px solid #0055ff;
+}
+
+.sula{
+border-left:6px solid #00c853;
+}
+
+.meio{
+border-left:6px solid #fdd835;
+}
+
+.z4{
+border-left:6px solid #d50000;
+}
+
+@media(max-width:800px){
+
+table{
+font-size:12px;
+}
+
+th,td{
+padding:8px;
+}
+
+}
