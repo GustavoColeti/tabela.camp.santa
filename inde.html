@@ -1,64 +1,238 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Brasileirão - Tabela</title>
-
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Superliga Amadora - Campeonato de Futebol</title>
+    <!-- FontAwesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chart.js para Estatísticas -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Cabeçalho Principal -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo-area">
+                <i class="fa-solid fa-shield-halved logo-icon"></i>
+                <div class="logo-text">
+                    <h1>Superliga Amadora</h1>
+                    <span>Temporada 2026</span>
+                </div>
+            </div>
+            
+            <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="globalSearch" placeholder="Pesquisar times, partidas ou jogadores...">
+            </div>
 
-<header>
+            <div class="header-actions">
+                <button id="themeToggle" class="icon-btn" title="Alternar Tema"><i class="fa-solid fa-moon"></i></button>
+                <button id="shareBtn" class="icon-btn" title="Compartilhar"><i class="fa-solid fa-share-nodes"></i></button>
+                <button id="printBtn" class="icon-btn" title="Imprimir PDF"><i class="fa-solid fa-print"></i></button>
+                <button id="adminLoginBtn" class="btn-primary"><i class="fa-solid fa-lock"></i> Painel Admin</button>
+            </div>
+        </div>
+    </header>
 
-<h1>🏆 Campeonato Brasileiro</h1>
+    <!-- Navegação por Abas -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <button class="nav-item active" data-tab="home"><i class="fa-solid fa-house"></i> Início</button>
+            <button class="nav-item" data-tab="standings"><i class="fa-solid fa-table-list"></i> Classificação</button>
+            <button class="nav-item" data-tab="matches"><i class="fa-solid fa-futbol"></i> Partidas & Rodadas</button>
+            <button class="nav-item" data-tab="stats"><i class="fa-solid fa-chart-bar"></i> Estatísticas</button>
+            <button class="nav-item" data-tab="teams"><i class="fa-solid fa-shield-team"></i> Equipes</button>
+        </div>
+    </nav>
 
-<p>Tabela de Classificação</p>
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+        <!-- ABA: INÍCIO -->
+        <section id="home" class="tab-pane active">
+            <div class="hero-banner">
+                <div class="hero-info">
+                    <span class="badge-live"><i class="fa-solid fa-circle"></i> Rodada 8 em Andamento</span>
+                    <h2>Copa Municipal de Futebol Amador</h2>
+                    <p>Acompanhe em tempo real a tabela, resultados, artilharia e estatísticas completas do torneio.</p>
+                </div>
+                <div class="hero-stats-card">
+                    <h3>Próximo Grande Jogo</h3>
+                    <div class="next-match-highlight" id="nextMatchHighlight">
+                        <!-- Preenchido via JS -->
+                    </div>
+                </div>
+            </div>
 
-</header>
+            <div class="grid-dashboard">
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fa-solid fa-bolt"></i> Últimos Resultados</h3>
+                        <button class="link-btn" onclick="switchTab('matches')">Ver todos</button>
+                    </div>
+                    <div class="card-body" id="homeRecentResults">
+                        <!-- Preenchido via JS -->
+                    </div>
+                </div>
 
-<div class="container">
+                <div class="card">
+                    <div class="card-header">
+                        <h3><i class="fa-solid fa-fire"></i> Destaques do Campeonato</h3>
+                    </div>
+                    <div class="card-body highlights-grid" id="homeHighlights">
+                        <!-- Preenchido via JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<table id="tabela">
+        <!-- ABA: CLASSIFICAÇÃO -->
+        <section id="standings" class="tab-pane">
+            <div class="card">
+                <div class="card-header">
+                    <h3><i class="fa-solid fa-ranking-star"></i> Tabela de Classificação</h3>
+                    <div class="legend-container">
+                        <span class="legend-item champion"><i class="fa-solid fa-square"></i> Campeão</span>
+                        <span class="legend-item libertadores"><i class="fa-solid fa-square"></i> Classificados</span>
+                        <span class="legend-item playoffs"><i class="fa-solid fa-square"></i> Playoffs</span>
+                        <span class="legend-item relegation"><i class="fa-solid fa-square"></i> Rebaixamento</span>
+                    </div>
+                </div>
+                <div class="card-body table-responsive">
+                    <table class="pro-table" id="standingsTable">
+                        <thead>
+                            <tr>
+                                <th>Pos</th>
+                                <th class="text-left">Clube</th>
+                                <th>J</th>
+                                <th>V</th>
+                                <th>E</th>
+                                <th>D</th>
+                                <th>GP</th>
+                                <th>GC</th>
+                                <th>SG</th>
+                                <th>PTS</th>
+                                <th>AP%</th>
+                                <th>Últimos 5</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Preenchido via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
 
-<thead>
+        <!-- ABA: PARTIDAS -->
+        <section id="matches" class="tab-pane">
+            <div class="matches-header">
+                <div class="round-selector">
+                    <label for="roundSelect"><i class="fa-solid fa-calendar-days"></i> Selecionar Rodada:</label>
+                    <select id="roundSelect">
+                        <!-- Preenchido via JS -->
+                    </select>
+                </div>
+            </div>
+            <div class="matches-grid" id="matchesContainer">
+                <!-- Preenchido via JS -->
+            </div>
+        </section>
 
-<tr>
+        <!-- ABA: ESTATÍSTICAS -->
+        <section id="stats" class="tab-pane">
+            <div class="stats-nav">
+                <button class="stats-tab-btn active" data-stat="scorers">Artilharia</button>
+                <button class="stats-tab-btn" data-stat="assists">Assistências</button>
+                <button class="stats-tab-btn" data-stat="general">Geral da Competição</button>
+            </div>
+            <div class="stats-content">
+                <div id="scorersPane" class="stats-pane active">
+                    <div class="card">
+                        <div class="card-header"><h3><i class="fa-solid fa-shoe-prints"></i> Artilheiros do Campeonato</h3></div>
+                        <div class="card-body" id="scorersList"></div>
+                    </div>
+                </div>
+                <div id="assistsPane" class="stats-pane">
+                    <div class="card">
+                        <div class="card-header"><h3><i class="fa-solid fa-hands-holding-child"></i> Líderes em Assistências</h3></div>
+                        <div class="card-body" id="assistsList"></div>
+                    </div>
+                </div>
+                <div id="generalPane" class="stats-pane">
+                    <div class="grid-dashboard">
+                        <div class="card">
+                            <div class="card-header"><h3>Média de Gols por Rodada</h3></div>
+                            <div class="card-body"><canvas id="goalsChart"></canvas></div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header"><h3>Desempenho Geral</h3></div>
+                            <div class="card-body"><canvas id="performanceChart"></canvas></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<th>#</th>
+        <!-- ABA: EQUIPES -->
+        <section id="teams" class="tab-pane">
+            <div class="teams-grid" id="teamsContainer">
+                <!-- Preenchido via JS -->
+            </div>
+        </section>
+    </main>
 
-<th>Clube</th>
+    <!-- MODAL DO PAINEL ADMINISTRATIVO -->
+    <div id="adminModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-screwdriver-wrench"></i> Painel Administrativo</h2>
+                <button class="close-btn" id="closeAdminModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="admin-tabs">
+                    <button class="admin-tab-btn active" data-admin="results">Atualizar Resultados</button>
+                    <button class="admin-tab-btn" data-admin="teams">Gerenciar Equipes</button>
+                    <button class="admin-tab-btn" data-admin="config">Configurações</button>
+                </div>
+                <div class="admin-pane active" id="adminResultsPane">
+                    <h3>Atualizar Placar de Partidas</h3>
+                    <div id="adminMatchesList"></div>
+                </div>
+                <div class="admin-pane" id="adminTeamsPane">
+                    <h3>Adicionar / Editar Equipes</h3>
+                    <form id="teamForm">
+                        <input type="text" id="teamNameInput" placeholder="Nome da Equipe" required>
+                        <input type="text" id="teamCityInput" placeholder="Cidade" required>
+                        <input type="text" id="teamStadiumInput" placeholder="Estádio" required>
+                        <button type="submit" class="btn-primary">Salvar Equipe</button>
+                    </form>
+                </div>
+                <div class="admin-pane" id="adminConfigPane">
+                    <h3>Critérios de Desempate e Temporada</h3>
+                    <p>Gerencie regras da competição e backup de dados.</p>
+                    <button class="btn-secondary" id="resetDataBtn">Restaurar Dados Originais</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<th>PTS</th>
+    <!-- MODAL DE DETALHES DO TIME -->
+    <div id="teamModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTeamTitle">Detalhes do Clube</h2>
+                <button class="close-btn" id="closeTeamModal">&times;</button>
+            </div>
+            <div class="modal-body" id="modalTeamBody">
+                <!-- Preenchido via JS -->
+            </div>
+        </div>
+    </div>
 
-<th>J</th>
-
-<th>V</th>
-
-<th>E</th>
-
-<th>D</th>
-
-<th>GP</th>
-
-<th>GC</th>
-
-<th>SG</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-</tbody>
-
-</table>
-
-</div>
-
-<script src="script.js"></script>
-
+    <script src="script.js"></script>
 </body>
 </html>
